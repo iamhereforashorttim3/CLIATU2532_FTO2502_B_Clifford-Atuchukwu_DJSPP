@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://podcast-api.netlfy.app");
+        const response = await fetch("https://podcast-api.netlify.app");
 
         if (!response.ok) {
           throw new Error("Failed to fetch podcasts");
