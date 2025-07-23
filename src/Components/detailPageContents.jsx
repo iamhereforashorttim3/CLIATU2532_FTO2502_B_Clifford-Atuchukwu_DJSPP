@@ -1,7 +1,12 @@
 import SeasonDetail from "./SeasonDetail";
 import GenresApi from "./utility/genreApi";
+import SeasonSelector from "./Utility/seasonSelector";
 
-export default function DetailPageContents({ show, selectedSeason }) {
+export default function DetailPageContents({
+  show,
+  selectedSeason,
+  setSelectedSeason,
+}) {
   console.log("DetailPageContents show", show);
   const totalEpisodes = show.seasons?.reduce((sum, season) => {
     return sum + (season.episodes?.length || 0);
@@ -38,6 +43,11 @@ export default function DetailPageContents({ show, selectedSeason }) {
         />
         <div className="current">
           <h1>Current Season</h1>
+          <SeasonSelector
+            seasons={show.seasons}
+            selectedSeason={selectedSeason}
+            onChange={setSelectedSeason}
+          />
           <SeasonDetail season={selectedSeason} />
         </div>
       </div>

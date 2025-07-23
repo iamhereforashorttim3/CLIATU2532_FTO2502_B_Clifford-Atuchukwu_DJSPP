@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SeasonSelector from "./Components/utility/seasonSelector";
 import DetailPageContents from "./Components/detailPageContents";
 import LoadingSpinner from "./Components/Utility/loadingSpinner";
 
@@ -61,12 +60,10 @@ function DetailPage() {
 
   return (
     <>
-      <DetailPageContents show={show} selectedSeason={selectedSeason} />
-
-      <SeasonSelector
-        seasons={show.seasons}
+      <DetailPageContents
+        show={show}
         selectedSeason={selectedSeason}
-        onChange={setSelectedSeason}
+        setSelectedSeason={setSelectedSeason}
       />
     </>
   );
