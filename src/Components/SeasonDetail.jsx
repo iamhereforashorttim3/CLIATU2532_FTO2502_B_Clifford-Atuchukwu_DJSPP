@@ -1,6 +1,25 @@
+import { useState, useRef } from "react";
+
 export default function SeasonDetail({ season }) {
   if (!season) return null;
   console.log(season.episodes);
+
+  const audioRef = useRef(null);
+  const [currentAudio, setCurrentAudio] = useState(null);
+
+  const playEpisode = (file) => {
+    if (audioRef.current) {
+      if (currentAudio === file && !audioRef.current.paused) {
+        audioRef.current.pause();
+        setCurrentAudio(null);
+        return;
+      }
+
+      audioRef.current.src = file;
+      audioRef.current.play();
+      setCurrentAudio(file);
+    }
+  };
 
   return (
     <>
@@ -19,7 +38,12 @@ export default function SeasonDetail({ season }) {
         <h2>Episodes</h2>
         <ul>
           {season.episodes.map((episode) => (
-            <li className="episode-card" key={episode.episode}>
+            <li
+              className="episode-card"
+              key={episode.episode}
+              onClick={() => playEpisode(episode.file)}
+              style={{ cursor: "pointer" }}
+            >
               <img className="episode-image" src={season.image} />
               <h3 className="episode-title">{episode.title}</h3>
               <p className="episode-description">{episode.description}</p>
@@ -27,6 +51,7 @@ export default function SeasonDetail({ season }) {
           ))}
         </ul>
       </div>
+      <audio ref={audioRef} />
     </>
   );
 }
