@@ -1,8 +1,7 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function SeasonDetail({ season }) {
   if (!season) return null;
-  console.log(season.episodes);
 
   const audioRef = useRef(null);
   const [currentAudio, setCurrentAudio] = useState(null);
@@ -42,7 +41,6 @@ export default function SeasonDetail({ season }) {
               className="episode-card"
               key={episode.episode}
               onClick={() => playEpisode(episode.file)}
-              style={{ cursor: "pointer" }}
             >
               <img className="episode-image" src={season.image} />
               <h3 className="episode-title">{episode.title}</h3>
@@ -51,7 +49,9 @@ export default function SeasonDetail({ season }) {
           ))}
         </ul>
       </div>
-      <audio ref={audioRef} />
+      {currentAudio && (
+        <audio ref={audioRef} controls className="bottom-audio-player" />
+      )}
     </>
   );
 }
