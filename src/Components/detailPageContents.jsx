@@ -1,9 +1,11 @@
 import SeasonDetail from "./SeasonDetail";
 import GenresApi from "./utility/genreApi";
 import { useNavigate } from "react-router-dom";
+import { useAudio } from "./Utility/audioutility";
 
 export default function DetailPageContents({ show, selectedSeason }) {
   console.log("DetailPageContents show", show);
+  const { playAudio } = useAudio();
   const navigate = useNavigate();
 
   const goHome = () => {
@@ -50,7 +52,7 @@ export default function DetailPageContents({ show, selectedSeason }) {
         />
         <div className="current">
           <h1>Current Season</h1>
-          <SeasonDetail season={selectedSeason} />
+          <SeasonDetail season={selectedSeason} playAudio={playAudio} />
         </div>
       </div>
     </>

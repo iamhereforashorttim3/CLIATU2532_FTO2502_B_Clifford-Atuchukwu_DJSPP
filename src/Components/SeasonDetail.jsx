@@ -1,31 +1,9 @@
-import { useRef, useState, useEffect } from "react";
+import { useAudio } from "./Utility/audioutility";
 
 export default function SeasonDetail({ season }) {
+  const { playAudio, currentTrack } = useAudio();
+
   if (!season) return null;
-
-  const audioRef = useRef(null);
-  const [currentAudio, setCurrentAudio] = useState(null);
-
-  useEffect(() => {
-    if (currentAudio && audioRef.current) {
-      audioRef.current.src = currentAudio;
-      audioRef.current.play();
-    }
-  }, [currentAudio]);
-
-  const playEpisode = (file) => {
-    if (audioRef.current) {
-      if (currentAudio === file && !audioRef.current.paused) {
-        audioRef.current.pause();
-        setCurrentAudio(null);
-        return;
-      }
-
-      audioRef.current.src = file;
-      audioRef.current.play();
-      setCurrentAudio(file);
-    }
-  };
 
   return (
     <>
@@ -44,20 +22,24 @@ export default function SeasonDetail({ season }) {
         <h2>Episodes</h2>
         <ul>
           {season.episodes.map((episode) => (
-            <li
-              className="episode-card"
-              key={episode.episode}
-              onClick={() => playEpisode(episode.file)}
-            >
-              <img className="episode-image" src={season.image} />
-              <h2 className="episode-title">Episode: {episode.episode}</h2>
+            <li className="episode-card" key={episode.episode}>
+              <img
+                className="episode-image"
+                src={season.image}
+                alt={episode.title}
+              />
               <h3 className="episode-title">{episode.title}</h3>
               <p className="episode-description">{episode.description}</p>
+              <button
+                onClick={() => playAudio(episode)}
+                className="play-button"
+              >
+                ▶ Play
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <audio ref={audioRef} controls className="bottom-audio-player" />
     </>
   );
 }
