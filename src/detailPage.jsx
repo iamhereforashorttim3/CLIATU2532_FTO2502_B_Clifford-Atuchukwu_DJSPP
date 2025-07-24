@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DetailPageContents from "./Components/detailPageContents";
 import LoadingSpinner from "./Components/Utility/loadingSpinner";
+import { Link } from "react-router-dom";
 
 /**
  * Renders the detail page for the specific podcast based on the ID of the URL.
@@ -60,6 +61,17 @@ function DetailPage() {
 
   return (
     <>
+      <header className="header">
+        <h3 class="header-title">ReactCast</h3>
+        <div className="nav-buttons">
+          <Link to="/favourite">
+            <button className="favourite-button">⭐ Go to Favorites</button>
+          </Link>
+          <Link to="/">
+            <button className="home-button">Home</button>
+          </Link>
+        </div>
+      </header>
       <DetailPageContents
         show={show}
         selectedSeason={selectedSeason}
