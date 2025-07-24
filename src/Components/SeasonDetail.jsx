@@ -1,10 +1,17 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function SeasonDetail({ season }) {
   if (!season) return null;
 
   const audioRef = useRef(null);
   const [currentAudio, setCurrentAudio] = useState(null);
+
+  useEffect(() => {
+    if (currentAudio && audioRef.current) {
+      audioRef.current.src = currentAudio;
+      audioRef.current.play();
+    }
+  }, [currentAudio]);
 
   const playEpisode = (file) => {
     if (audioRef.current) {
@@ -49,9 +56,7 @@ export default function SeasonDetail({ season }) {
           ))}
         </ul>
       </div>
-      {currentAudio && (
-        <audio ref={audioRef} controls className="bottom-audio-player" />
-      )}
+      <audio ref={audioRef} controls className="bottom-audio-player" />
     </>
   );
 }
