@@ -27,31 +27,35 @@ export default function Carousel({ podcasts }) {
   };
 
   return (
-    <div className="carousel-container">
-      <button className="carousel-arrow" onClick={prev}>
-        ‹
-      </button>
+    <div>
+      {podcasts && podcasts.length >= visibleCount && (
+        <div className="carousel-container">
+          <button className="carousel-arrow" onClick={prev}>
+            ‹
+          </button>
 
-      <div className="carousel-track">
-        {getVisibleItems().map((podcast) => (
-          <div
-            key={podcast.id}
-            className="carousel-card"
-            onClick={() => handleClick(podcast.id)}
-          >
-            <img
-              src={podcast.image}
-              alt={podcast.title}
-              className="carousel-image"
-            />
-            <h4 className="carousel-title">{podcast.title}</h4>
+          <div className="carousel-track">
+            {getVisibleItems().map((podcast) => (
+              <div
+                key={podcast.id}
+                className="carousel-card"
+                onClick={() => handleClick(podcast.id)}
+              >
+                <img
+                  src={podcast.image}
+                  alt={podcast.title}
+                  className="carousel-image"
+                />
+                <h4 className="carousel-title">{podcast.title}</h4>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <button className="carousel-arrow" onClick={next}>
-        ›
-      </button>
+          <button className="carousel-arrow" onClick={next}>
+            ›
+          </button>
+        </div>
+      )}
     </div>
   );
 }
