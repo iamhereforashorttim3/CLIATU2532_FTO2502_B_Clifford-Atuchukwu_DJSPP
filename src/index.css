@@ -236,3 +236,50 @@
     transform: rotate(360deg);
   }
 }
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.carousel-arrow {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.carousel-card {
+  min-width: 180px;
+  flex-shrink: 0;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+}
+
+.carousel-image {
+  width: 320px;
+  height: 420px;
+  border-radius: 1rem;
+}
+
+.carousel-title {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: white;
+}
