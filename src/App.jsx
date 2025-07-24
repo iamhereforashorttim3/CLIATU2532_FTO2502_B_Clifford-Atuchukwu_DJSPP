@@ -1,12 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { genres } from "./Components/data.js";
+import { genres } from "./Components/Utility/data.js";
 import { useSearchParams } from "react-router-dom";
-import { processPodcasts } from "./Components/features.jsx";
-import Header from "./Components/Header.jsx";
-import Sort from "./Components/sort.jsx";
-import Filter from "./Components/filter.jsx";
-import Pagination from "./Components/pagination.jsx";
+import { processPodcasts } from "./Components/Utility/features.jsx";
+import Header from "./Components/Utility/Header.jsx";
+import Sort from "./Components/Utility/sort.jsx";
+import Filter from "./Components/Utility/filter.jsx";
+import Pagination from "./Components/Utility/pagination.jsx";
 import PodcastGrid from "./Components/podcast-grid.jsx";
 import { getGenres } from "./Components/utility/getGenres.jsx";
 /**
