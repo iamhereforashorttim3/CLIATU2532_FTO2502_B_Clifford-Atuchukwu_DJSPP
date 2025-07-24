@@ -7,6 +7,7 @@ import Header from "./Components/Utility/Header.jsx";
 import Sort from "./Components/Utility/sort.jsx";
 import Filter from "./Components/Utility/filter.jsx";
 import Pagination from "./Components/Utility/pagination.jsx";
+import Carousel from "./Components/Utility/carousel.jsx";
 import PodcastGrid from "./Components/podcast-grid.jsx";
 import { getGenres } from "./Components/utility/getGenres.jsx";
 /**
@@ -93,7 +94,10 @@ function App() {
       {error && (
         <p className="error-wrong">Something has gone wrong: {error}</p>
       )}
-
+      <div>
+        <h1>Recommended Shows</h1>
+        <Carousel podcasts={podcastData} />
+      </div>
       {!loading && !error && podcastData.length === 0 && (
         <p className="error-later">
           Sorry, there are no podcasts available. Come back later.
