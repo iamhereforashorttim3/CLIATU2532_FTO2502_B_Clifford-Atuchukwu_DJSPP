@@ -50,6 +50,7 @@ export default function SeasonDetail({ season }) {
               onClick={() => playEpisode(episode.file)}
             >
               <img className="episode-image" src={season.image} />
+              <h2 className="episode-title">Episode: {episode.episode}</h2>
               <h3 className="episode-title">{episode.title}</h3>
               <p className="episode-description">{episode.description}</p>
             </li>
