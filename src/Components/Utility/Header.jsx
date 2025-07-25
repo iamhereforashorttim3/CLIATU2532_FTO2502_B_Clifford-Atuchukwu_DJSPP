@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ThemeToggle from "./themeToggle";
 
 export default function Header({ search, updateParam }) {
   return (
@@ -10,6 +11,7 @@ export default function Header({ search, updateParam }) {
       <Link to="/">
         <button className="home-button"> Home</button>
       </Link>
+      <ThemeToggle />
 
       <div className="search">
         <input
