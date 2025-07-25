@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getFavorites } from "./favouriteStorage";
 import { Link } from "react-router-dom";
 import PodcastPreviews from "../../Components/podcastPreview";
+import ThemeToggle from "../theme-toggle/themeToggle";
 
 /**
  *  Shows all favourited Podcasts with the option to remove the,
@@ -22,7 +23,13 @@ export default function FavoritesPage() {
 
   return (
     <div className="favorites-page">
-      <h1>Your Favorite Shows</h1>
+      <header className="header">
+        <h3 class="header-title">Your Favourite Shows</h3>
+        <Link to="/">
+          <button className="home-button"> Home</button>
+        </Link>
+        <ThemeToggle />
+      </header>
       <Link to="/" className="back-link">
         ← Back to All Shows
       </Link>
