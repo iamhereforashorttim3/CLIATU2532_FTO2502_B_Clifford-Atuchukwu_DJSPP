@@ -18,20 +18,20 @@ export default function FavoritesPage() {
 
   return (
     <div className="favorites-page">
-      <h1>Your Favorite Podcasts</h1>
+      <h1>Your Favorite Shows</h1>
       <Link to="/" className="back-link">
-        ←
+        ← Back to All Shows
       </Link>
 
       {favorites.length === 0 ? (
-        <p>No favorites yet.</p>
+        <p>You haven't favorited any shows yet.</p>
       ) : (
         <div className="favorites-grid">
-          {favorites.map((podcast) => (
-            <div key={podcast.id} className="favorite-item">
-              <PodcastPreviews podcasts={podcast} />
+          {favorites.map((show) => (
+            <div key={show.id} className="favorite-item">
+              <PodcastPreviews podcasts={show} />
               <button
-                onClick={() => handleRemove(podcast.id)}
+                onClick={() => handleRemove(show.id)}
                 className="remove-btn"
               >
                 Remove Favorite

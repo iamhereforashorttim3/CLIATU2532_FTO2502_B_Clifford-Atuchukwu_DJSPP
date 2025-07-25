@@ -5,22 +5,16 @@ export const getFavorites = () => {
   return stored ? JSON.parse(stored) : [];
 };
 
-export const toggleFavorite = (podcast) => {
+export const toggleFavorite = (show) => {
   const favorites = getFavorites();
-  const exists = favorites.some((fav) => fav.id === podcast.id);
+  const exists = favorites.some((fav) => fav.id === show.id);
 
   if (exists) {
-    const updated = favorites.filter((fav) => fav.id !== podcast.id);
+    const updated = favorites.filter((fav) => fav.id !== show.id);
     localStorage.setItem(favouriteKey, JSON.stringify(updated));
     return false;
   } else {
-    const updated = [
-      ...favorites,
-      {
-        ...podcast,
-        favoritedAt: new Date().toISOString(),
-      },
-    ];
+    const updated = [...favorites, show];
     localStorage.setItem(favouriteKey, JSON.stringify(updated));
     return true;
   }
