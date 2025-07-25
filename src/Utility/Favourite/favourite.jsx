@@ -3,6 +3,10 @@ import { getFavorites } from "./favouriteStorage";
 import { Link } from "react-router-dom";
 import PodcastPreviews from "../../Components/podcastPreview";
 
+/**
+ *  Shows all favourited Podcasts with the option to remove the,
+ * @returns Favourites page with the list of shows
+ */
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 

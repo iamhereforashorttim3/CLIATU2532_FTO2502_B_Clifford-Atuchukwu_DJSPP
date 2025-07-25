@@ -1,10 +1,22 @@
+/**
+ * The key is used to store favourites
+ */
 const favouriteKey = "podcastFavorites";
 
+/**
+ * Gets all the favourited shows from storage
+ * @returns {Array} List of favourite shows
+ */
 export const getFavorites = () => {
   const stored = localStorage.getItem(favouriteKey);
   return stored ? JSON.parse(stored) : [];
 };
 
+/**
+ * Adds or remove a show from the favourites page
+ * @param {object} show
+ * @returns {boolean} True if added, false if removed
+ */
 export const toggleFavorite = (show) => {
   const favorites = getFavorites();
   const exists = favorites.some((fav) => fav.id === show.id);
