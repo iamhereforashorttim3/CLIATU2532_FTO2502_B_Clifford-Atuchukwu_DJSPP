@@ -5,10 +5,10 @@ export default function Header({ search, updateParam }) {
     <header className="header">
       <h3 class="header-title">ReactCast</h3>
       <Link to="/favourite">
-        <button>⭐ Go to Favorites</button>
+        <button className="favourite-button">⭐ Go to Favorites</button>
       </Link>
       <Link to="/">
-        <button>Home</button>
+        <button className="home-button"> Home</button>
       </Link>
 
       <div className="search">
