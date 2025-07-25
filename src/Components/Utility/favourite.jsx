@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFavorites, removeFromFavorites } from "./favouriteStorage";
 import PodcastPreviews from "../podcastPreview";
+import { Link } from "react-router-dom";
 
 export default function FavoritesPage({ getGenres }) {
   const [favorites, setFavorites] = useState([]);
@@ -17,9 +18,15 @@ export default function FavoritesPage({ getGenres }) {
 
   return (
     <div>
-      <div className="Header">
-        <h3 className="header-title">ReactCast</h3>
-      </div>
+      <header className="header">
+        <h3 class="header-title">ReactCast</h3>
+        <Link to="/favourite">
+          <button className="favourite-button">⭐ Go to Favorites</button>
+        </Link>
+        <Link to="/">
+          <button className="home-button"> Home</button>
+        </Link>
+      </header>
       <h1>Your Favorites</h1>
 
       {favorites.map((podcast) => (
