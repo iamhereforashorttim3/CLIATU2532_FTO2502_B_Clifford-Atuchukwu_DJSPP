@@ -2,7 +2,7 @@ import { useAudio } from "./audioutility";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Global audio player component that shows the current track and playback controls
+ * Global audio player component that shows the track playing
  * @returns The audio player AI or Null if no track is playing
  */
 export default function GlobalAudioPlayer() {
