@@ -1,6 +1,7 @@
 export default function SeasonSelector({ seasons, selectedSeason, onChange }) {
   return (
     <select
+      className="season-selector"
       value={selectedSeason?.season || seasons[0]?.season}
       onChange={(e) => {
         const season = seasons.find(
