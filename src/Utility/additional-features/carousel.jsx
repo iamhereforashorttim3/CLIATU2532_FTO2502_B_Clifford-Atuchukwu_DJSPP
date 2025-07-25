@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * A carousel that displays podcast cards
+ * @returns <Carousel/>
+ */
 export default function Carousel({ podcasts }) {
   const [startIndex, setStartIndex] = useState(0);
   const navigate = useNavigate();
