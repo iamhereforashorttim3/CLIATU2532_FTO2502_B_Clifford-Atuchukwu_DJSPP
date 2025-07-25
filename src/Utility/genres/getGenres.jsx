@@ -1,4 +1,4 @@
-import { genres } from "./data";
+import { genres } from "../data";
 
 /**
  *

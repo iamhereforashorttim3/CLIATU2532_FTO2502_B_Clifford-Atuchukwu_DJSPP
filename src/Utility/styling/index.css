@@ -1,0 +1,353 @@
+* {
+  box-sizing: border-box;
+}
+
+.detail-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.left-content {
+  flex: 1 1 480px;
+  min-width: 0;
+}
+
+.show-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.show-description {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--text-color);
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.show-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+.show-stats p {
+  margin: 0;
+}
+
+.show-image {
+  flex: 0 0 min(100%, 320px);
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  aspect-ratio: 2/3;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  align-self: center;
+}
+
+.show-image:hover {
+  transform: scale(1.04);
+}
+
+.current {
+  flex-basis: 100%;
+  margin-top: 2rem;
+  border-top: 2px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.current > h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.season-detail {
+  width: calc(100% - 2rem);
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+.season-season {
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.season-number {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-weight: 600;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.season-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0.25rem 0 0;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.season-image {
+  width: 100%;
+  max-height: min(400px, 50vh);
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 1rem 0 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.season-image:hover {
+  transform: scale(1.02);
+}
+
+.season-description {
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.season-episode {
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.episodes > h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.3rem;
+  color: var(--text-color);
+}
+
+.episodes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.episode-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.episode-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.episode-image {
+  width: 100%;
+  height: clamp(120px, 25vw, 160px);
+  object-fit: contain;
+  background-color: var(--card-bg);
+}
+
+.episode-title {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  margin: 0.7rem 1rem 0 1rem;
+  color: var(--text-color);
+}
+
+.episode-description {
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  margin: 0.4rem 1rem 1rem 1rem;
+  line-height: 1.4;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.spinner {
+  border: 6px solid var(--status-border);
+  border-top: 6px solid var(--accent-color);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  padding: clamp(1rem, 2vw, 2rem);
+  overflow: hidden;
+}
+
+.carousel-arrow {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+  color: var(--accent-color);
+}
+
+.carousel-track {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  min-width: clamp(120px, 30vw, 180px);
+  flex-shrink: 0;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s;
+  scroll-snap-align: start;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  max-width: 320px;
+  border-radius: 1rem;
+  background-color: var(--card-bg);
+  object-fit: cover;
+}
+
+.carousel-title {
+  margin-top: 0.5rem;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  color: var(--text-color);
+  padding: 0 0.5rem;
+}
+
+.favourite-button,
+.home-button {
+  all: unset;
+  font-weight: bold;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  margin-right: clamp(0.5rem, 1vw, 1rem);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.favourite-button:hover,
+.home-button:hover {
+  color: var(--accent-color);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: clamp(0.5rem, 0.75vw, 0.75rem);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .detail-header {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .show-image {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .episodes ul {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .carousel-card {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .show-title {
+    font-size: 1.8rem;
+  }
+
+  .current > h1 {
+    font-size: 1.6rem;
+  }
+
+  .episodes ul {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-card {
+    min-width: 120px;
+  }
+
+  .carousel-arrow {
+    padding: 0.5rem;
+  }
+}

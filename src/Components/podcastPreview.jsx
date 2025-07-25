@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { toggleFavorite, isFavorite } from "./Utility/favouriteStorage";
+import {
+  toggleFavorite,
+  isFavorite,
+} from "../Utility/Favourite/favouriteStorage";
 import { useState, useEffect } from "react";
 
 export default function PodcastPreviews({ podcasts }) {

@@ -1,12 +1,12 @@
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "./Utility/styling/index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import FavoritesPage from "./Components/Utility/favourite.jsx";
+import FavoritesPage from "./Utility/Favourite/favourite.jsx";
 import DetailPage from "./detailPage.jsx";
 import App from "./App.jsx";
-import GlobalAudioPlayer from "./Components/Utility/audioPlayer.jsx";
-import { AudioProvider } from "./Components/Utility/audioProvider.jsx";
-import { ThemeProvider } from "./Components/Utility/themeUtil.jsx";
+import GlobalAudioPlayer from "./Utility/Audio/audioPlayer.jsx";
+import { AudioProvider } from "./Utility/Audio/audioProvider.jsx";
+import { ThemeProvider } from "./Utility/theme-toggle/themeUtil.jsx";
 
 /**
  * Renders the <App /> component inside the DOM element with the "root" id

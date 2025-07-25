@@ -1,4 +1,4 @@
-import { genres } from "./data";
+import { genres } from "../data";
 
 /**
  * It process the array of podcast data by using search, filtering, sorting and pagination.

@@ -1,0 +1,530 @@
+:root {
+  --bg-dark: #121212;
+  --text-dark: #e5e5e5;
+  --card-bg-dark: #1a1a1a;
+  --header-bg-dark: #232b2b;
+  --border-dark: #444;
+  --accent-dark: #66b2ff;
+  --accent-hover-dark: #004aad;
+  --genre-bg-dark: #292929;
+  --genre-text-dark: #66b2ff;
+  --search-bg-dark: #1a1a1a;
+  --status-border-dark: rgba(255, 255, 255, 0.2);
+
+  --bg-light: #f5f5f5;
+  --text-light: #333333;
+  --card-bg-light: #ffffff;
+  --header-bg-light: #f0f0f0;
+  --border-light: #ccc;
+  --accent-light: #0066cc;
+  --accent-hover-light: #004080;
+  --genre-bg-light: #e6f2ff;
+  --genre-text-light: #004080;
+  --search-bg-light: #ffffff;
+  --status-border-light: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--bg-dark);
+  --text-color: var(--text-dark);
+  --card-bg: var(--card-bg-dark);
+  --header-bg: var(--header-bg-dark);
+  --border-color: var(--border-dark);
+  --accent-color: var(--accent-dark);
+  --accent-hover: var(--accent-hover-dark);
+  --genre-bg: var(--genre-bg-dark);
+  --genre-text: var(--genre-text-dark);
+  --search-bg: var(--search-bg-dark);
+  --status-border: var(--status-border-dark);
+}
+
+[data-theme="light"] {
+  --bg-color: var(--bg-light);
+  --text-color: var(--text-light);
+  --card-bg: var(--card-bg-light);
+  --header-bg: var(--header-bg-light);
+  --border-color: var(--border-light);
+  --accent-color: var(--accent-light);
+  --accent-hover: var(--accent-hover-light);
+  --genre-bg: var(--genre-bg-light);
+  --genre-text: var(--genre-text-light);
+  --search-bg: var(--search-bg-light);
+  --status-border: var(--status-border-light);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--header-bg);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin: 0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.podcast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.podcastPreview {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+  padding: 10px;
+}
+
+.error-later {
+  font-size: 2rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.error-wrong {
+  font-size: 2rem;
+  color: #ff4444;
+  font-weight: 500;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.podcastPreview .card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.6rem;
+  color: var(--text-color);
+}
+
+.podcastPreview:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.podcastPreview img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  object-position: center;
+  background-color: var(--card-bg);
+  margin-top: 10px;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.descriptions {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  line-height: 1.4;
+  margin: 0px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.seasons,
+.updated {
+  margin: 0px;
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-top: 0.2rem;
+}
+
+.genres {
+  color: var(--accent-color);
+  margin: 10px;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genre-badge {
+  background-color: var(--genre-bg);
+  color: var(--genre-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-right: 0.4rem;
+  white-space: nowrap;
+  margin-top: 0.3rem;
+}
+
+.last-updated {
+  color: var(--text-color);
+  margin: 10px;
+  margin-bottom: 10px;
+}
+
+.status {
+  border: 6px solid var(--status-border);
+  border-top: 6px solid var(--accent-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.8s linear infinite;
+  margin: 4rem auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+}
+
+.search input {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color);
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--search-bg);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+.search-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.sort select {
+  padding: 0.5rem 1rem;
+  border-radius: 21px;
+  font-size: 1rem;
+  background-color: var(--search-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-color);
+  min-width: 160px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sort select:hover,
+.sort select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+  outline: none;
+}
+
+.page-numbers {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 3rem 0 4rem;
+}
+
+.page-numbers button {
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.page-numbers button:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--card-bg);
+}
+
+.page-numbers button.active {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: default;
+  box-shadow: 0 0 10px var(--accent-hover);
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 2rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.filter select {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  background-color: var(--search-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-color);
+  min-width: 160px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter select:hover,
+.filter select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+  outline: none;
+}
+
+.sort,
+.filter {
+  flex: 0 1 auto;
+}
+
+.podcast-grid {
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.header {
+  flex-direction: column;
+  align-items: stretch;
+  height: auto;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.header-title {
+  font-size: clamp(1.4rem, 5vw, 1.6rem);
+}
+
+.search {
+  width: 100%;
+}
+
+.search input {
+  font-size: 1rem;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  width: 100%;
+}
+
+.controls {
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.sort select,
+.filter select {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.page-numbers {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  margin: 2rem 0;
+}
+
+.page-numbers button {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .podcast-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .header-title {
+    font-size: clamp(1.6rem, 2.5vw, 1.8rem);
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .search {
+    max-width: 400px;
+  }
+
+  .controls {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+
+  .sort select,
+  .filter select {
+    width: auto;
+    min-width: 160px;
+  }
+
+  .page-numbers {
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+
+  .page-numbers button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--card-bg);
+  transform: translateY(-2px);
+}
+
+.favorite-btn.active {
+  background-color: var(--accent-color);
+  color: var(--card-bg);
+}
+
+.favorite-btn.active:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.play-button {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.episode-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+  align-items: center;
+}
+
+.episode-card .favorite-btn {
+  padding: 0.5rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .favorite-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .play-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .episode-actions {
+    gap: 0.75rem;
+  }
+
+  .episode-card .favorite-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}

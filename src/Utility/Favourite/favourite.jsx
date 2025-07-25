@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getFavorites } from "./favouriteStorage";
 import { Link } from "react-router-dom";
-import PodcastPreviews from "../podcastPreview";
+import PodcastPreviews from "../../Components/podcastPreview";
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);

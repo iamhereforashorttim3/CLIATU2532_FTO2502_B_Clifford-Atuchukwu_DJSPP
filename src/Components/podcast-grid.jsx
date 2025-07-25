@@ -8,6 +8,7 @@ export default function PodcastGrid({ paginatedData, getGenres }) {
         <PodcastPreviews
           key={podcast.id}
           podcasts={{
+            ...podcast,
             id: podcast.id,
             img: podcast.image,
             title: podcast.title,

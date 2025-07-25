@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DetailPageContents from "./Components/detailPageContents";
-import LoadingSpinner from "./Components/Utility/loadingSpinner";
+import LoadingSpinner from "./Utility/additional-features/loadingSpinner";
 import { Link } from "react-router-dom";
 
 /**
@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 function DetailPage() {
   const { id } = useParams();
   const [show, setShow] = useState();
-  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [selectedSeason, setSelectedSeason] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -57,7 +57,7 @@ function DetailPage() {
 
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>There was an error {error.message}</p>;
-  if (!show) return null;
+  if (!show || !selectedSeason) return null;
 
   return (
     <>
@@ -75,7 +75,7 @@ function DetailPage() {
       <DetailPageContents
         show={show}
         selectedSeason={selectedSeason}
-        setSelectedSeason={setSelectedSeason}
+        onChange={setSelectedSeason}
       />
     </>
   );

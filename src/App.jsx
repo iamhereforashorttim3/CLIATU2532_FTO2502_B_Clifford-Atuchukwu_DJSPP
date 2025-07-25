@@ -1,15 +1,15 @@
-import "./App.css";
+import "./Utility/styling/app.css";
 import { useState, useEffect } from "react";
-import { genres } from "./Components/Utility/data.js";
+import { genres } from "./Utility/data.js";
 import { useSearchParams } from "react-router-dom";
-import { processPodcasts } from "./Components/Utility/features.jsx";
-import Header from "./Components/Utility/Header.jsx";
-import Sort from "./Components/Utility/sort.jsx";
-import Filter from "./Components/Utility/filter.jsx";
-import Pagination from "./Components/Utility/pagination.jsx";
-import Carousel from "./Components/Utility/carousel.jsx";
+import { processPodcasts } from "./Utility/additional-features/features.jsx";
+import Header from "./Utility/Header.jsx";
+import Sort from "./Utility/additional-features/sort.jsx";
+import Filter from "./Utility/additional-features/filter.jsx";
+import Pagination from "./Utility/additional-features/pagination.jsx";
+import Carousel from "./Utility/additional-features/carousel.jsx";
 import PodcastGrid from "./Components/podcast-grid.jsx";
-import { getGenres } from "./Components/utility/getGenres.jsx";
+import { getGenres } from "./Utility/genres/getGenres.jsx";
 /**
  * This component is for displaying and managing the podcasts.
  * It is also for filtering, sorting, search and pagination functionality.

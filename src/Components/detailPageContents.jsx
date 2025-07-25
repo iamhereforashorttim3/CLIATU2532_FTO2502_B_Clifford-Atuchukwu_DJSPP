@@ -1,9 +1,15 @@
 import SeasonDetail from "./SeasonDetail";
-import GenresApi from "./utility/genreApi";
+import GenresApi from "../Utility/genres/genreApi";
 import { useNavigate } from "react-router-dom";
-import { useAudio } from "./Utility/audioutility";
+import { useAudio } from "../Utility/Audio/audioutility";
+import SeasonSelector from "../Utility/additional-features/seasonSelector";
 
-export default function DetailPageContents({ show, selectedSeason }) {
+export default function DetailPageContents({
+  show,
+  selectedSeason,
+  seasons,
+  onChange,
+}) {
   console.log("DetailPageContents show", show);
   const { playAudio } = useAudio();
   const navigate = useNavigate();
@@ -52,7 +58,17 @@ export default function DetailPageContents({ show, selectedSeason }) {
         />
         <div className="current">
           <h1>Current Season</h1>
-          <SeasonDetail season={selectedSeason} playAudio={playAudio} />
+          <SeasonSelector
+            seasons={show.seasons}
+            selectedSeason={selectedSeason}
+            onChange={onChange}
+          />
+          <SeasonDetail
+            season={selectedSeason || show.seasons}
+            playAudio={playAudio}
+            show={show.id}
+            showTitle={show.title}
+          />
         </div>
       </div>
     </>
