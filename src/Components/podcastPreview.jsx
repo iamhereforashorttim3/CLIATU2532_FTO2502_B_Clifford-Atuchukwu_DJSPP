@@ -1,38 +1,54 @@
 import { Link } from "react-router-dom";
-import { addFavorite } from "./Utility/favouriteStorage";
+import { toggleFavorite, isFavorite } from "./Utility/favouriteStorage";
+import { useState, useEffect } from "react";
 
-/**
- * This component is meant to display the important details of the podcasts
- * @param {*} param0
- * @returns A card that displays the podcast preview
- */
 export default function PodcastPreviews({ podcasts }) {
-  const handleFavorite = () => {
-    addFavorite(podcasts);
-    alert("Added to favorites!");
+  const [isFavoriteState, setIsFavoriteState] = useState(false);
+
+  useEffect(() => {
+    if (podcasts?.id) {
+      setIsFavoriteState(isFavorite(podcasts.id));
+    }
+  }, [podcasts?.id]);
+
+  const handleFavorite = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!podcasts?.id) return;
+
+    const result = toggleFavorite(podcasts);
+    setIsFavoriteState(result);
   };
+
   if (!podcasts) {
     return null;
   }
+
   return (
-    <>
-      <Link to={`/detail/${podcasts.id}`}>
-        <div className="podcastPreview">
-          <img className="image" src={podcasts.img} />
-          <h1 className="title">{podcasts.title}</h1>
-          <p className="seasons">Seasons: {podcasts.seasons}</p>
-          <div className="genres">
-            {Array.isArray(podcasts.genres) &&
-              podcasts.genres.map((genres, index) => (
-                <span key={index} className="genre-badge">
-                  {genres}
-                </span>
-              ))}
-          </div>
-          <p className="last-updated">{podcasts.updated}</p>
-          <button onClick={handleFavorite}>❤️ Favorite</button>
+    <Link to={`/detail/${podcasts.id}`} className="podcast-link">
+      <div className="podcastPreview">
+        <img className="image" src={podcasts.img} alt={podcasts.title} />
+        <h1 className="title">{podcasts.title}</h1>
+        <p className="seasons">Seasons: {podcasts.seasons?.length || 0}</p>
+        <div className="genres">
+          {Array.isArray(podcasts.genres) &&
+            podcasts.genres.map((genre, index) => (
+              <span key={index} className="genre-badge">
+                {genre}
+              </span>
+            ))}
         </div>
-      </Link>
-    </>
+        <p className="last-updated">{podcasts.updated}</p>
+        <button
+          onClick={handleFavorite}
+          className={`favorite-btn ${isFavoriteState ? "active" : ""}`}
+          aria-label={
+            isFavoriteState ? "Remove from favorites" : "Add to favorites"
+          }
+        >
+          {isFavoriteState ? "♥" : "♡"}
+        </button>
+      </div>
+    </Link>
   );
 }
