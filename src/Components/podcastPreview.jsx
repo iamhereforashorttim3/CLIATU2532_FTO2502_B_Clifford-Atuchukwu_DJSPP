@@ -35,7 +35,13 @@ export default function PodcastPreviews({ podcasts }) {
           podcasts.title,
           podcasts.seasons
         )}
-        <p className="seasons">Seasons: {podcasts.seasons?.length || 0}</p>
+        <p className="seasons" style={{ color: "red", fontWeight: "bold" }}>
+          Seasons:{" "}
+          {Array.isArray(podcasts.seasons)
+            ? podcasts.seasons.length
+            : podcasts.seasons || 0}
+        </p>
+        {console.log("Full podcast data:", podcasts)}
         <div className="genres">
           {Array.isArray(podcasts.genres) &&
             podcasts.genres.map((genre, index) => (
