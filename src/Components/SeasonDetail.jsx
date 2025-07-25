@@ -1,10 +1,6 @@
 import { useAudio } from "../Utility/Audio/audioutility";
-import {
-  toggleFavorite,
-  isFavorite,
-} from "../Utility/Favourite/favouriteStorage";
 
-export default function SeasonDetail({ season, showId, showTitle }) {
+export default function SeasonDetail({ season }) {
   const { playAudio, currentTrack } = useAudio();
 
   if (!season) return null;
@@ -15,14 +11,6 @@ export default function SeasonDetail({ season, showId, showTitle }) {
         <div className="season-season">
           <h2 className="season-number">Season: {season.season}</h2>
           <h1 className="season-title">{season.title}</h1>
-          <button
-            onClick={() => toggleFavorite(season, "season")}
-            className={`favorite-btn ${
-              isFavorite(season.id, "season") ? "active" : ""
-            }`}
-          >
-            {isFavorite(season.id, "season") ? "♥" : "♡"} Favorite Season
-          </button>
         </div>
         <img className="season-image" src={season.image} alt={season.title} />
         <p className="season-description">{season.description}</p>
@@ -48,24 +36,6 @@ export default function SeasonDetail({ season, showId, showTitle }) {
                   className="play-button"
                 >
                   ▶ Play
-                </button>
-                <button
-                  onClick={() =>
-                    toggleFavorite(
-                      {
-                        ...episode,
-                        showId,
-                        showTitle,
-                        seasonTitle: season.title,
-                      },
-                      "episode"
-                    )
-                  }
-                  className={`favorite-btn ${
-                    isFavorite(episode.episodeId, "episode") ? "active" : ""
-                  }`}
-                >
-                  {isFavorite(episode.episodeId, "episode") ? "♥" : "♡"}
                 </button>
               </div>
             </li>
