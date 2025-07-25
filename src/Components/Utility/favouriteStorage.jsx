@@ -1,71 +1,32 @@
-const favoritesKey = "favorites";
+const favouriteKey = "podcastFavorites";
 
-export function getFavorites() {
-  const stored = localStorage.getItem(favoritesKey);
+export const getFavorites = () => {
+  const stored = localStorage.getItem(favouriteKey);
   return stored ? JSON.parse(stored) : [];
-}
+};
 
-export function addFavorite(podcast) {
-  const current = getFavorites();
-  const exists = current.find((p) => p.id === podcast.id);
-  if (exists) return;
+export const toggleFavorite = (podcast) => {
+  const favorites = getFavorites();
+  const exists = favorites.some((fav) => fav.id === podcast.id);
 
-  const favoritedAt = new Date().toISOString();
-  const newFavorite = { ...podcast, favoritedAt };
+  if (exists) {
+    const updated = favorites.filter((fav) => fav.id !== podcast.id);
+    localStorage.setItem(favouriteKey, JSON.stringify(updated));
+    return false;
+  } else {
+    const updated = [
+      ...favorites,
+      {
+        ...podcast,
+        favoritedAt: new Date().toISOString(),
+      },
+    ];
+    localStorage.setItem(favouriteKey, JSON.stringify(updated));
+    return true;
+  }
+};
 
-  localStorage.setItem(favoritesKey, JSON.stringify([...current, newFavorite]));
-}
-
-export function removeFromFavorites(podcastId) {
-  const current = getFavorites();
-  const updated = current.filter((p) => p.id !== podcastId);
-  localStorage.setItem(favoritesKey, JSON.stringify(updated));
-}
-
-const seasonKey = "favoriteSeasons";
-
-export function getFavoriteSeasons() {
-  const stored = localStorage.getItem(seasonKey);
-  return stored ? JSON.parse(stored) : [];
-}
-
-export function addFavoriteSeason(season) {
-  const current = getFavoriteSeasons();
-  const exists = current.find((s) => s.id === season.id);
-  if (exists) return;
-
-  const favoritedAt = new Date().toISOString();
-  const newFavorite = { ...season, favoritedAt };
-
-  localStorage.setItem(seasonKey, JSON.stringify([...current, newFavorite]));
-}
-
-export function removeFromFavoriteSeasons(seasonId) {
-  const current = getFavoriteSeasons();
-  const updated = current.filter((s) => s.id !== seasonId);
-  localStorage.setItem(seasonKey, JSON.stringify(updated));
-}
-
-const episodeKey = "favoriteEpisodes";
-
-export function getFavoriteEpisodes() {
-  const stored = localStorage.getItem(episodeKey);
-  return stored ? JSON.parse(stored) : [];
-}
-
-export function addFavoriteEpisode(episode) {
-  const current = getFavoriteEpisodes();
-  const exists = current.find((e) => e.episodeId === episode.episodeId);
-  if (exists) return;
-
-  const favoritedAt = new Date().toISOString();
-  const newFavorite = { ...episode, favoritedAt };
-
-  localStorage.setItem(episodeKey, JSON.stringify([...current, newFavorite]));
-}
-
-export function removeFromFavoriteEpisodes(episodeId) {
-  const current = getFavoriteEpisodes();
-  const updated = current.filter((e) => e.episodeId !== episodeId);
-  localStorage.setItem(episodeKey, JSON.stringify(updated));
-}
+export const isFavorite = (id) => {
+  const favorites = getFavorites();
+  return favorites.some((fav) => fav.id === id);
+};

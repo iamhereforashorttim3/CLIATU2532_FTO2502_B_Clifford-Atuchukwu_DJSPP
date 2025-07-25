@@ -1,71 +1,45 @@
-import { useEffect, useState } from "react";
-import { getFavorites, removeFromFavorites } from "./favouriteStorage";
-import PodcastPreviews from "../podcastPreview";
+import { useState, useEffect } from "react";
+import { getFavorites } from "./favouriteStorage";
 import { Link } from "react-router-dom";
+import PodcastPreviews from "../podcastPreview";
 
-export default function FavoritesPage({ getGenres }) {
+export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const storedFavorites = getFavorites();
-    setFavorites(storedFavorites);
+    setFavorites(getFavorites());
   }, []);
 
   const handleRemove = (id) => {
-    removeFromFavorites(id);
-    setFavorites((prev) => prev.filter((p) => p.id !== id));
+    const updated = favorites.filter((fav) => fav.id !== id);
+    localStorage.setItem("podcastFavorites", JSON.stringify(updated));
+    setFavorites(updated);
   };
 
   return (
-    <div>
-      <header className="header">
-        <h3 class="header-title">ReactCast</h3>
-        <Link to="/favourite">
-          <button className="favourite-button">⭐ Go to Favorites</button>
-        </Link>
-        <Link to="/">
-          <button className="home-button"> Home</button>
-        </Link>
-      </header>
-      <h1>Your Favorites</h1>
+    <div className="favorites-page">
+      <h1>Your Favorite Podcasts</h1>
+      <Link to="/" className="back-link">
+        ←
+      </Link>
 
-      {favorites.map((podcast) => (
-        <div key={podcast.id} className="podcast-card">
-          <PodcastPreviews
-            podcasts={{
-              id: podcast.id,
-              img: podcast.image,
-              title: podcast.title,
-              seasons: podcast.seasons,
-            }}
-            getGenres={getGenres}
-          />
-          <p>Favorited at: {new Date(podcast.favoritedAt).toLocaleString()}</p>
-
-          {Array.isArray(podcast.seasons) &&
-            podcast.seasons.length > 0 &&
-            podcast.seasons.map((season, index) => (
-              <div key={index} className="season-section">
-                <h4>{season.title || `Season ${index + 1}`}</h4>
-                <ul>
-                  {Array.isArray(season.episodes) &&
-                    season.episodes.map((ep, i) => (
-                      <li key={i}>
-                        <strong>{ep.title}</strong> – {ep.description}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            ))}
-
-          <button
-            onClick={() => handleRemove(podcast.id)}
-            className="remove-btn"
-          >
-            Remove from Favorites
-          </button>
+      {favorites.length === 0 ? (
+        <p>No favorites yet.</p>
+      ) : (
+        <div className="favorites-grid">
+          {favorites.map((podcast) => (
+            <div key={podcast.id} className="favorite-item">
+              <PodcastPreviews podcasts={podcast} />
+              <button
+                onClick={() => handleRemove(podcast.id)}
+                className="remove-btn"
+              >
+                Remove Favorite
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }
