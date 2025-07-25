@@ -29,6 +29,12 @@ export default function PodcastPreviews({ podcasts }) {
       <div className="podcastPreview">
         <img className="image" src={podcasts.img} alt={podcasts.title} />
         <h1 className="title">{podcasts.title}</h1>
+        {console.log(
+          "Seasons data:",
+          podcasts.id,
+          podcasts.title,
+          podcasts.seasons
+        )}
         <p className="seasons">Seasons: {podcasts.seasons?.length || 0}</p>
         <div className="genres">
           {Array.isArray(podcasts.genres) &&
