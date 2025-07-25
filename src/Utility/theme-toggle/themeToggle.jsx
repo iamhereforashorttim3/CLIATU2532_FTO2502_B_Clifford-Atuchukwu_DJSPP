@@ -1,6 +1,10 @@
 import { useTheme } from "./themeUtil";
 import { FiSun, FiMoon } from "react-icons/fi";
 
+/**
+ * A button that will switch between light/dark mode when clicked
+ * @returns (React.ReactElement) Theme toggle button
+ */
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
