@@ -1,4 +1,4 @@
-import "./Utility/styling/App.css";
+import "./Utility/styling/app.css";
 import { useState, useEffect } from "react";
 import { genres } from "./Utility/data.js";
 import { useSearchParams } from "react-router-dom";
