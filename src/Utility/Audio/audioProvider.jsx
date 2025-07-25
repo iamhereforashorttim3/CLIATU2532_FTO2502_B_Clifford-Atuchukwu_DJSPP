@@ -1,6 +1,11 @@
 import { useState, useRef } from "react";
 import { Audioinfo } from "./audioInfo";
 
+/**
+ * Provides audio playback functionality to the child components
+ * @param {object} props - The component props
+ * @returns
+ */
 export const AudioProvider = ({ children }) => {
   const audio = useRef(new Audio()).current;
   const [currentTrack, setCurrentTrack] = useState(null);

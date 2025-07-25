@@ -1,6 +1,10 @@
 import { useAudio } from "./audioutility";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Global audio player component that shows the current track and playback controls
+ * @returns The audio player AI or Null if no track is playing
+ */
 export default function GlobalAudioPlayer() {
   const { currentTrack, isPlaying, togglePlayPause } = useAudio();
   const [progress, setProgress] = useState(0);
